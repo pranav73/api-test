@@ -1,0 +1,184 @@
+----------
+User Login
+----------
+
+Method: POST
+Url: http://local.profile-test.com/user/login?_format=json
+Header: Content-type: application/json
+Body:
+{
+  "name" : "<username>",
+  "pass" : "<password>"
+}
+
+OUTPUT
+{
+"current_user": {
+"uid": "1",
+"roles": [
+  "authenticated"
+],
+"name": "admin"
+},
+"csrf_token": "XIFhaDmAHZ31Mmqq9ysM-ZN_BFQKwKgjzIHu_PCSw50",
+"logout_token": "LJH47eXdyxPbFC3z6r0fvAQ9zzYToxgvOiAUn_lqlxc"
+}
+
+-----------
+User logout
+-----------
+
+Method: POST
+Url: http://local.profile-test.com/user/logout?_format=json
+Header: Content-type: application/json
+
+OUTPUT
+Redirecting to http://local.profile-test.com/web/
+
+-------------
+User Register
+-------------
+
+Method: POST
+Url: http://local.profile-test.com/user/register?_format=json
+Header: Content-type: application/json
+Body:
+{
+  "mail":
+  {
+    "value":"tester1@gmail.com"
+  },
+  "name":
+  {
+    "value":"tester1"
+  }
+}
+
+OUTPUT:
+{
+"uid": [
+  {
+"value": 59
+}
+],
+"uuid": [
+  {
+"value": "13be1751-dde4-4921-9ea0-90a66211a933"
+}
+],
+"langcode": [
+  {
+"value": "en"
+}
+],
+"name": [
+  {
+"value": "tester1"
+}
+],
+"created": [
+  {
+"value": "2018-06-18T07:20:25+00:00",
+"format": "Y-m-d\TH:i:sP"
+}
+],
+"changed": [
+  {
+"value": "2018-06-18T07:20:25+00:00",
+"format": "Y-m-d\TH:i:sP"
+}
+],
+"default_langcode": [
+  {
+"value": true
+}
+],
+}
+
+------------
+Create Donor
+------------
+
+Method: POST
+Url: http://local.profile-test.com/web/entity/profile?_format=json
+Header:
+  Content-type: application/json,
+  x-csrf-token: BAGE7Hcn6SUTJWS_jSWUMwDmxvQEFsp48-MpVKd0Clk
+Body:
+{
+  "type": "donor",
+  "field_donor_first_name": {
+    "value": "test"
+  },
+  "field_donor_last_name": {
+    "value": "test"
+  },
+  "field_donor_blood_group": {
+    "value": "A+"
+  },
+  "field_donor_last_donation_date": {
+    "value": "2018-02-15T07:35:00"
+  },
+  "field_donor_can_be_contacted": {
+    "value": true
+  },
+  "field_donor_contact_number": {
+    "value": "45674543"
+  },
+  "field_donor_address": {
+    "address": {
+      "langcode": "",
+      "country_code": "IN",
+      "administrative_area": "Maharashtra",
+      "locality": "sawantwadi",
+      "dependent_locality": null,
+      "postal_code": "416510",
+      "sorting_code": null,
+      "address_line1": "sawantwadi",
+      "address_line2": "",
+      "organization": null,
+      "given_name": null,
+      "additional_name": null,
+      "family_name": null
+    }
+  },
+  "field_donor_gender": {
+    "value": "male"
+  },
+  "field_donor_dob": {
+    "value": "1996-06-18T02:00:00"
+  },
+  "field_donor_request_count": {
+    "value": "3"
+  },
+  "field_donor_donation_frequency": {
+    "value": "yet_to_donate"
+  }
+}
+
+OUTPUT:
+{"profile_id":[{"value":3}],"uuid":[{"value":"d9247d37-04d7-4fbd-98d7-07c52a9b6ed8"}],"revision_id":[{"value":3}],"type":[{"target_id":"donor","target_type":"profile_type","target_uuid":"7be8dd5a-aa42-4bce-ad61-ad78eb191872"}],"uid":[],"status":[{"value":true}],"is_default":[],"created":[{"value":"2018-06-19T05:41:14+00:00","format":"Y-m-d\\TH:i:sP"}],"changed":[{"value":"2018-06-19T05:41:14+00:00","format":"Y-m-d\\TH:i:sP"}],"field_donor_address":[{"langcode":"","country_code":"IN","administrative_area":"Maharashtra","locality":"sawantwadi","dependent_locality":null,"postal_code":"416510","sorting_code":null,"address_line1":"sawantwadi","address_line2":"","organization":null,"given_name":null,"additional_name":null,"family_name":null}],"field_donor_blood_group":[{"value":"A+"}],"field_donor_can_be_contacted":[{"value":true}],"field_donor_contact_number":[{"value":"45674543"}],"field_donor_dob":[{"value":"1996-06-18T02:00:00"}],"field_donor_donation_frequency":[{"value":"yet_to_donate"}],"field_donor_first_name":[{"value":"test"}],"field_donor_gender":[{"value":"male"}],"field_donor_last_donation_date":[{"value":"2018-02-15T07:35:00"}],"field_donor_last_name":[{"value":"test"}]}
+
+------------
+Donor Search
+------------
+
+Method: GET
+Url: http://local.profile-test.com/web/api/profile/donor?filter[field_donor_gender]=female
+Header:
+  Accept : application/vnd.api+json,
+  Content-type : application/vnd.api+json
+
+OUTPUT
+
+{"data":[{"type":"profile--donor","id":"38d43ec7-31ab-4aac-bc7b-70117e0e90be","attributes":{"profile_id":1,"uuid":"38d43ec7-31ab-4aac-bc7b-70117e0e90be","revision_id":1,"status":true,"is_default":true,"created":1529299339,"changed":1529299339,"field_donor_address":{"langcode":"","country_code":"IN","administrative_area":"Maharashtra","locality":"sawantwadi","dependent_locality":null,"postal_code":"416510","sorting_code":null,"address_line1":"sawantwadi","address_line2":"","organization":null,"given_name":null,"additional_name":null,"family_name":null},"field_donor_blood_group":"A+","field_donor_can_be_contacted":true,"field_donor_contact_number":"45674543","field_donor_dob":"2009-06-18T02:00:00","field_donor_donation_frequency":"yet_to_donate","field_donor_first_name":"revati","field_donor_gender":"female","field_donor_last_donation_date":"2018-06-15T07:35:00","field_donor_last_name":"gawas"},"relationships":{"type":{"data":{"type":"profile_type--profile_type","id":"7be8dd5a-aa42-4bce-ad61-ad78eb191872"},"links":{"self":"http:\/\/local.profile-test.com\/web\/api\/profile\/donor\/38d43ec7-31ab-4aac-bc7b-70117e0e90be\/relationships\/type","related":"http:\/\/local.profile-test.com\/web\/api\/profile\/donor\/38d43ec7-31ab-4aac-bc7b-70117e0e90be\/type"}},"uid":{"data":{"type":"user--user","id":"b0605133-0dc7-4c39-aee7-b8923b0abf9e"},"links":{"self":"http:\/\/local.profile-test.com\/web\/api\/profile\/donor\/38d43ec7-31ab-4aac-bc7b-70117e0e90be\/relationships\/uid","related":"http:\/\/local.profile-test.com\/web\/api\/profile\/donor\/38d43ec7-31ab-4aac-bc7b-70117e0e90be\/uid"}}},"links":{"self":"http:\/\/local.profile-test.com\/web\/api\/profile\/donor\/38d43ec7-31ab-4aac-bc7b-70117e0e90be"}}],"jsonapi":{"version":"1.0","meta":{"links":{"self":"http:\/\/jsonapi.org\/format\/1.0\/"}}},"links":{"self":"http:\/\/local.profile-test.com\/web\/api\/profile\/donor?filter%5Bfield_donor_gender%5D=female"}}
+
+----------
+Donor Sort
+----------
+
+Method: GET
+Url: http://local.profile-test.com/web/api/profile/donor?sort[sort_donor][path]=field_donor_last_donation_date&sort[sort_donor][direction]=DESC&sort[sort_donor][path]=field_donor_request_count&sort[sort_donor][direction]=ASC
+Header:
+  Accept : application/vnd.api+json,
+  Content-type : application/vnd.api+json
